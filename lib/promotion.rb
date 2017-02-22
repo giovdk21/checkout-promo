@@ -6,6 +6,10 @@ class Promotion
     response = Net::HTTP.get(
       'api.localhost', "/v1/promotion?id=#{promotion_name}"
     )
-    JSON.parse(response)
+    if response != 'error'
+      JSON.parse(response)
+    else
+      fail 'Invalid promotion!'
+    end
   end
 end
