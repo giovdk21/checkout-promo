@@ -1,5 +1,6 @@
 require 'spec_helper'
 require_relative '../../lib/promotion'
+require_relative '../factories/item'
 
 describe Promotion do
   it 'get promotion rules' do
@@ -43,6 +44,31 @@ describe Promotion do
       expect(min_quantity).to eq 2
       expect(discount_type).to eq 'promo_price'
       expect(promo_price).to eq 8.5
+    end
+
+    it 'return discounted price for given item if matches the rules' do
+      # setup
+      promo = Promotion.new('over_60_and_lavender_heart')
+      item1 = FactoryGirl.build(:item, :item1)
+      quantity = 3
+
+      # exercise
+      unit_price = promo.discounted_price(item1[:code], quantity)
+
+      # verify
+      expect(unit_price.to_s('F')).to eq '8.5'
+    end
+
+    it 'return discounted total for given item if matches the rules' do
+      # setup
+      promo = Promotion.new('over_60_and_lavender_heart')
+      total = 60
+
+      # exercise
+      unit_price = promo.discounted_total(total)
+
+      # verify
+      expect(unit_price.to_s('F')).to eq '54'
     end
   end
 end
