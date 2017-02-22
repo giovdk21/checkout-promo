@@ -53,7 +53,7 @@ describe Promotion do
       quantity = 3
 
       # exercise
-      unit_price = promo.discounted_price(item1[:code], quantity)
+      unit_price = promo.discounted_price(item1[:code], item1[:price], quantity)
 
       # verify
       expect(unit_price.to_s('F')).to eq '8.5'
@@ -62,13 +62,13 @@ describe Promotion do
     it 'return discounted total for given item if matches the rules' do
       # setup
       promo = Promotion.new('over_60_and_lavender_heart')
-      total = 60
+      total = BigDecimal.new(60)
 
       # exercise
       unit_price = promo.discounted_total(total)
 
       # verify
-      expect(unit_price.to_s('F')).to eq '54'
+      expect(unit_price.to_s('F')).to eq '54.0'
     end
   end
 end

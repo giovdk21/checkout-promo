@@ -27,7 +27,7 @@ class Basket
   # Return the total to be paid, and apply the promotion
   # if promotion_name is provided
   def total(promotion_name = false)
-    total = 0
+    total = BigDecimal.new(0)
 
     @promo = Promotion.new(promotion_name) if promotion_name
 
