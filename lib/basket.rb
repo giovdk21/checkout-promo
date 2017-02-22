@@ -23,4 +23,26 @@ class Basket
   def find_by_code(code)
     @items.detect { |item| item[:data].code == code }
   end
+
+  # Return the total to be paid, and apply the promotion
+  # if promotion_name is provided
+  def total(promotion_name = false)
+    total = 0
+
+    @promo = Promotion.new(promotion_name) if promotion_name
+
+    @items.each do |basket_item|
+      total = sum_item(basket_item, total)
+    end
+
+    total
+  end
+
+  private
+
+  # Sum the given item to the total based on quantity and, if give, promotion
+  def sum_item(basket_item, total)
+    unit_price = basket_item[:data].price * basket_item[:quantity]
+    total + unit_price
+  end
 end
