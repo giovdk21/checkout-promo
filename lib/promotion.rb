@@ -10,7 +10,8 @@ class Promotion
     item_promo_rules = @rules['on_item'][item_code]
 
     # Check if the minimum quantity requirement is met
-    return price unless item_promo_rules && quantity >= item_promo_rules['min_quantity']
+    return price unless item_promo_rules &&
+                        quantity >= item_promo_rules['min_quantity']
 
     case item_promo_rules['discount_type']
     when 'promo_price'
@@ -21,10 +22,12 @@ class Promotion
   end
 
   def discounted_total(total)
+    return total unless total > 0 && total > @rules['on_total']['min_amount']
+
     case @rules['on_total']['discount_type']
     when 'percent'
       discount = (total / 100 * @rules['on_total']['discount'])
-      (total - discount)
+      (total - discount).round(2)
     when 'value'
       (total - @rules['on_total']['discount'])
     else

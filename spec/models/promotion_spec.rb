@@ -62,13 +62,13 @@ describe Promotion do
     it 'return discounted total for given item if matches the rules' do
       # setup
       promo = Promotion.new('over_60_and_lavender_heart')
-      total = BigDecimal.new(60)
+      total = BigDecimal.new(65)
 
       # exercise
       unit_price = promo.discounted_total(total)
 
       # verify
-      expect(unit_price.to_s('F')).to eq '54.0'
+      expect(unit_price.to_s('F')).to eq '58.5'
     end
   end
 end

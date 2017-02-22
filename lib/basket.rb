@@ -38,7 +38,7 @@ class Basket
       total = sum_item(basket_item, total)
     end
 
-    total
+    discounted_total total
   end
 
   private
@@ -56,5 +56,13 @@ class Basket
     end
 
     total + unit_price * basket_item[:quantity]
+  end
+
+  def discounted_total(total)
+    if @promo
+      @promo.discounted_total(total)
+    else
+      total
+    end
   end
 end
