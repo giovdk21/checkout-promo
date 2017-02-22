@@ -130,7 +130,7 @@ describe Basket do
 
       total = subject.total('over_60_and_lavender_heart')
 
-      expect(total.to_s('F')).to eq('50')
+      expect(total.to_s('F')).to eq('50.0')
     end
   end
 
@@ -149,9 +149,9 @@ describe Basket do
       subject.scan item1var
       total3 = subject.total('over_80_cufflinks_tshirt')
 
-      expect(total1.to_s('F')).to eq('35')
-      expect(total2.to_s('F')).to eq('80')
-      expect(total3.to_s('F')).to eq('110') # 5 pounds discount applied
+      expect(total1.to_s('F')).to eq('35.0')
+      expect(total2.to_s('F')).to eq('80.0')
+      expect(total3.to_s('F')).to eq('110.0') # 5 pounds discount applied
     end
 
     it 'apply discount on the item if quantity is enough' do
@@ -164,7 +164,7 @@ describe Basket do
       total2 = subject.total('over_80_cufflinks_tshirt')
 
       expect(total1.to_s('F')).to eq('39.9')
-      expect(total2.to_s('F')).to eq('45') # price reduced to 15 pounds
+      expect(total2.to_s('F')).to eq('45.0') # price reduced to 15 pounds
     end
 
     it 'combines discount on total and items' do

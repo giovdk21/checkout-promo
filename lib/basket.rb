@@ -1,3 +1,6 @@
+require 'bigdecimal'
+require_relative 'promotion'
+
 # Shopping basket / checkout manager
 class Basket
   attr_reader :items_count
@@ -42,7 +45,16 @@ class Basket
 
   # Sum the given item to the total based on quantity and, if give, promotion
   def sum_item(basket_item, total)
-    unit_price = basket_item[:data].price * basket_item[:quantity]
-    total + unit_price
+    unit_price = basket_item[:data].price
+
+    if @promo
+      unit_price = @promo.discounted_price(
+        basket_item[:data].code,
+        unit_price,
+        basket_item[:quantity]
+      )
+    end
+
+    total + unit_price * basket_item[:quantity]
   end
 end
