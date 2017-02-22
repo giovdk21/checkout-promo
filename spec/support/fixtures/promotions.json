@@ -1,0 +1,35 @@
+{
+  "over_60_and_lavender_heart": {
+    "on_total": {
+      "min_amount": 60,
+      "discount": 10,
+      "discount_type": "percent"
+    },
+    "on_item": {
+      "001": {
+        "min_quantity": 2,
+        "discount_type": "promo_price",
+        "promo_price": 8.5
+      }
+    }
+  },
+  "over_80_cufflinks_tshirt": {
+    "on_total": {
+      "min_amount": 80,
+      "discount": 5,
+      "discount_type": "value"
+    },
+    "on_item": {
+      "002": {
+        "min_quantity": 2,
+        "discount_type": "promo_price",
+        "promo_price": 40
+      },
+      "003": {
+        "min_quantity": 3,
+        "discount_type": "promo_price",
+        "promo_price": 15
+      }
+    }
+  }
+}
