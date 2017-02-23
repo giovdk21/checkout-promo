@@ -43,7 +43,8 @@ class Basket
 
   private
 
-  # Sum the given item to the total based on quantity and, if give, promotion
+  # Sum the given item to the total based on quantity
+  # and, if given, promotional price
   def sum_item(basket_item, total)
     unit_price = basket_item[:data].price
 
@@ -58,6 +59,7 @@ class Basket
     total + unit_price * basket_item[:quantity]
   end
 
+  # Returns the discounted total if a promotion is applied
   def discounted_total(total)
     if @promo
       @promo.discounted_total(total)

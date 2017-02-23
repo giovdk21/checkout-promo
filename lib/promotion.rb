@@ -22,7 +22,7 @@ class Promotion
   end
 
   def discounted_total(total)
-    return total unless total > 0 && total > @rules['on_total']['min_amount']
+    return total unless total > @rules['on_total']['min_amount']
 
     case @rules['on_total']['discount_type']
     when 'percent'
